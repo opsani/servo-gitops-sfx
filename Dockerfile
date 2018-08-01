@@ -16,6 +16,7 @@ ADD https://storage.googleapis.com/kubernetes-release/release/v1.10.0/bin/linux/
 
 # Install servo
 ADD https://raw.githubusercontent.com/opsani/servo-gitops/master/adjust \
+    https://raw.githubusercontent.com/opsani/servo-gitops/master/formula.py \
     https://raw.githubusercontent.com/opsani/servo-sfx/master/measure \
     https://raw.githubusercontent.com/opsani/servo/master/adjust.py \
     https://raw.githubusercontent.com/opsani/servo/master/measure.py \
