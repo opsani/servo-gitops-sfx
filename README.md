@@ -70,19 +70,21 @@ gitops:
             git_file:  test.yml
             settings:
                 cpu:
-                    key_path:  ['main_uswest1', 'cpus']
-                    min:       1
-                    max:       16
-                    type:      range
+                    key_path:    ['main_uswest1', 'cpus']
+                    min:         1
+                    max:         16
+                    type:        range
+                    value_conv:  int
                 apache_workers:
-                    key_path:  ['main_uswest1', 'env', 'APACHE_WORKERS']
-                    min:       1
-                    max:       20
-                    type:      range
+                    key_path:    ['main_uswest1', 'env', 'APACHE_WORKERS']
+                    min:         1
+                    max:         20
+                    type:        range
+                    value_conv:  str_int
             dependencies:
                 mem:
                     key_path: ['main_uswest1', 'mem']
-                    formula:  '(apache_workers * 1000) + 500'
+                    formula:  '(int(apache_workers) * 1000) + 500'
 
 EOF
 
