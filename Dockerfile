@@ -4,7 +4,7 @@ WORKDIR /servo
 
 # Install dependencies
 RUN pip3 install -U pip setuptools wheel && \
-    pip3 install signalfx ruamel.yaml requests PyYAML
+    pip3 install signalfx requests PyYAML 'ruamel.yaml<0.15'
 RUN apt-get update && \
     apt-get install -y --no-install-recommends git openssh-client
 
