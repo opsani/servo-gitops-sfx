@@ -2,9 +2,11 @@ FROM python:3.6-slim
 
 WORKDIR /servo
 
-# Install dependencies
+# Install dependencies:  use the version of ruamel.yaml which is in
+# accord with your present use, if any.  To install the stable version
+# use 'ruamel.yaml<0.15'.
 RUN pip3 install -U pip setuptools wheel && \
-    pip3 install signalfx requests PyYAML 'ruamel.yaml<0.15'
+    pip3 install signalfx requests PyYAML 'ruamel.yaml==0.15.23'
 RUN apt-get update && \
     apt-get install -y --no-install-recommends git openssh-client
 
