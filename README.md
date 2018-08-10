@@ -54,11 +54,14 @@ chmod 600 /opt/optune/ssh-key
 cat << 'EOF' > /opt/optune/config.yaml
 
 sfx:
-    flow_program:   "data('pod_network_transmit_bytes_total',filter('kubernetes_namespace','abc')).publish()"
-    time_aggr:      avg
-    space_aggr:     sum
     #pre_cmd:       <user command, e.g. start load generation>
     #post_cmd:      <user command, e.g. stop load generation>
+    metrics:
+        perf:
+            flow_program:  "data('pod_network_transmit_bytes_total',filter('kubernetes_namespace','abc')).publish()"
+            time_aggr:     avg
+            space_aggr:    sum
+            unit:          bytes
 
 gitops:
     git_url:     ssh://git@github.com/<my_user>/<my_repo>.git

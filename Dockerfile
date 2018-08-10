@@ -9,9 +9,10 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends git openssh-client
 
 # Install optional packages used for testing - not required for servo operation
-RUN apt-get install -y --no-install-recommends apache2-utils
+RUN apt-get install -y --no-install-recommends apache2-utils curl
 ADD https://storage.googleapis.com/kubernetes-release/release/v1.10.0/bin/linux/amd64/kubectl \
     /usr/local/bin/kubectl
+RUN chmod a+rwx /usr/local/bin/kubectl
 
 # Install servo
 ADD https://raw.githubusercontent.com/opsani/servo-gitops/master/adjust \
@@ -21,7 +22,7 @@ ADD https://raw.githubusercontent.com/opsani/servo-gitops/master/adjust \
     https://raw.githubusercontent.com/opsani/servo/master/measure.py \
     https://raw.githubusercontent.com/opsani/servo/master/servo \
     /servo/
-RUN chmod a+rwx /servo/adjust /servo/measure /servo/servo /usr/local/bin/kubectl
+RUN chmod a+rwx /servo/adjust /servo/measure /servo/servo
 RUN chmod a+rw /servo/measure.py
 
 # Setup for non-interactive git operations using ssh:  mkdir for root id_rsa
